@@ -1,28 +1,46 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import Hero from './components/Hero';
+import What from './components/What';
+import How from './components/How';
+import WhoProofCTA from './components/WhoProofCTA';
+import StickyCTA from './components/StickyCTA';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    document.title = 'Luxury Verticalised | Sold Before the Crane Stops';
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setProgress(scrolled);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
+    <div className="bg-black min-h-screen">
+      {/* Scroll progress bar */}
+      <div
+        className="fixed top-0 left-0 h-[1px] bg-[#C0B283] z-40"
+        style={{ width: `${progress}%` }}
+      />
 
-export default App
+      <Hero />
+      <What />
+      <How />
+      <WhoProofCTA />
+
+      {/* Single CTA sitewide */}
+      <StickyCTA />
+    </div>
+  );
+};
+
+export default App;
