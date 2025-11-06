@@ -1,31 +1,43 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const What = () => {
   return (
-    <section className="bg-black text-white py-20 md:py-28" aria-label="What">
+    <section className="bg-black text-white py-20 md:py-28" aria-label="Vision">
       <div className="max-w-6xl mx-auto px-6 md:px-10 lg:px-16">
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="text-[28px] md:text-[36px] lg:text-[44px] mb-6"
           style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif', fontWeight: 200 }}
         >
-          We don't sell — we clarify.
-        </h2>
-        <p
+          The Vision.
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           className="text-[16px] md:text-[18px] text-white/80 max-w-3xl"
           style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif', fontWeight: 400 }}
         >
-          ₹5Cr+ inventory placed before concrete cures. We operate on a 20% at‑risk fee against milestone outcomes. When clarity lands, velocity compounds.
-        </p>
+          We craft luxury narratives that feel inevitable. Precision, restraint, and sensory staging that
+          move a market before any specification is spoken.
+        </motion.p>
 
-        {/* Heartbeat Signature GIF */}
-        <div className="mt-10 rounded-md border border-[#C0B283]/40 p-4 inline-block">
-          <img
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWNmNDRnNDRueXpoNG80b3lhbWZ2NnVqeGd4bTBqY2ltbGZ0eW8wNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/5T06ftQWTK0XS/giphy.gif"
-            alt="Heartbeat signature"
-            className="w-[380px] h-[80px] object-cover"
-          />
-          <p className="mt-2 text-xs text-white/60">Auto-plays once. Biometric cadence.</p>
-        </div>
+        {/* Animated divider */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0.6 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+          className="mt-10 h-px origin-left"
+          style={{ background: 'linear-gradient(90deg,#C0B283,rgba(192,178,131,0))' }}
+          aria-hidden
+        />
       </div>
     </section>
   );
